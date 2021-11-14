@@ -19,7 +19,6 @@ COPY --from=builder /gramarr ./
 
 VOLUME ["/config"]
 
-COPY config.json /config/config.json
+COPY config.json.template /config/config.json
 
 ENTRYPOINT ["/gramarr", "-configDir=/config"]
-
