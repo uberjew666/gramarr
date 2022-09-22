@@ -126,7 +126,7 @@ func (c *Client) AddTVShow(m TVShow, languageProfile int, qualityProfile int, pa
 		LanguageProfileID: languageProfile,
 		TVDBID:            m.TVDBID,
 		RootFolderPath:    path,
-		seasonFolder       true,
+		SeasonFolder       true,
 		Monitored:         true,
 		Year:              m.Year,
 		Seasons:           m.Seasons,

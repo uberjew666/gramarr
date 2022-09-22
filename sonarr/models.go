@@ -49,6 +49,7 @@ type AddTVShowRequest struct {
 	LanguageProfileID int              `json:"languageProfileId"`
 	TVDBID            int              `json:"tvdbId"`
 	RootFolderPath    string           `json:"rootFolderPath"`
+	SeasonFolder      bool             `json:"seasonFolder"`
 	Monitored         bool             `json:"monitored"`
 	AddOptions        AddTVShowOptions `json:"addOptions"`
 	Year              int              `json:"year"`
