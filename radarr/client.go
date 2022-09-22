@@ -62,9 +62,9 @@ func createApiURL(c Config) string {
 	}
 
 	if c.URLBase != "" {
-		u.Path = fmt.Sprintf("%s/api", c.URLBase)
+		u.Path = fmt.Sprintf("%s/api/v3", c.URLBase)
 	} else {
-		u.Path = "/api"
+		u.Path = "/api/v3"
 	}
 
 	fmt.Println("The URL for Radarr is", u.String())
@@ -94,6 +94,16 @@ func (c *Client) SearchMovies(term string) ([]Movie, error) {
 	return movies, nil
 }
 
+func (c *Client) GetFolders() ([]Folder, error) {
+	resp, err := c.client.R().SetResult([]Folder{}).Get("rootfolder")
+	if err != nil {
+		return nil, err
+	}
+
+	folders := *resp.Result().(*[]Folder)
+	return folders, nil
+}
+
 func (c *Client) GetProfile(prfl string) ([]Profile, error) {
 
 	resp, err := c.client.R().SetResult([]Profile{}).Get(prfl)
@@ -104,16 +114,6 @@ func (c *Client) GetProfile(prfl string) ([]Profile, error) {
 
 	return profile, nil
 
-}
-
-func (c *Client) GetFolders() ([]Folder, error) {
-	resp, err := c.client.R().SetResult([]Folder{}).Get("rootfolder")
-	if err != nil {
-		return nil, err
-	}
-
-	folders := *resp.Result().(*[]Folder)
-	return folders, nil
 }
 
 func (c *Client) AddMovie(m Movie, qualityProfile int, path string) (movie Movie, err error) {

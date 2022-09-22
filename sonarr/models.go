@@ -30,15 +30,15 @@ type TVShowSeason struct {
 	Monitored    bool `json:"monitored"`
 }
 
+type Profile struct {
+	Name string `json:"name"`
+	ID   int    `json:"id"`
+}
+
 type Folder struct {
 	Path      string `json:"path"`
 	FreeSpace int64  `json:"freeSpace"`
 	ID        int    `json:"id"`
-}
-
-type Profile struct {
-	Name string `json:"name"`
-	ID   int    `json:"id"`
 }
 
 type AddTVShowRequest struct {
