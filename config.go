@@ -6,8 +6,9 @@ import (
 	"log"
 	"path/filepath"
 
-	"github.com/alcmoraes/gramarr/radarr"
-	"github.com/alcmoraes/gramarr/sonarr"
+	"github.com/uberjew666/gramarr/radarr"
+	"github.com/uberjew666/gramarr/sonarr"
+	"github.com/uberjew666/gramarr/lidarr"
 )
 
 type Config struct {
@@ -15,6 +16,7 @@ type Config struct {
 	Bot      BotConfig      `json:"bot"`
 	Radarr   *radarr.Config `json:"radarr"`
 	Sonarr   *sonarr.Config `json:"sonarr"`
+	Lidarr   *lidarr.Config `json:"lidarr"`
 }
 
 type TelegramConfig struct {

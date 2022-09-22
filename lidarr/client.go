@@ -123,10 +123,10 @@ func (c *Client) AddArtist(m Artist, metadataProfile int, qualityProfile int, pa
 		Images:            m.Images,
 		QualityProfileID:  qualityProfile,
 		MetadataProfileID: metadataProfile,
-		ForeignArtistID:   m.foreignArtistId,
+		ForeignArtistID:   m.ForeignArtistID,
 		RootFolderPath:    path,
 		Monitored:         true,
-		AddOptions:        AddArtistOptions{searchForMissingAlbums: true},
+		AddOptions:        AddArtistOptions{SearchForMissingAlbums: true},
 	}
 
 	resp, err := c.client.R().SetBody(request).SetResult(Artist{}).Post("artist")

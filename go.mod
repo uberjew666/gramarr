@@ -1,4 +1,4 @@
-module github.com/alcmoraes/gramarr
+module github.com/uberjew666/gramarr
 
 go 1.13
 

@@ -5,9 +5,17 @@ import "fmt"
 type Artist struct {
 	ArtistName      string        `json:"artistName"`
 	CleanName       string        `json:"cleanName"`
-	PosterURL       string        `json:"remotePoster"`
+	Disambiguation  string        `json:"disambiguation"`
 	ForeignArtistID string        `json:"foreignArtistId"`
 	Images          []ArtistImage `json:"images"`
+}
+
+func (m Artist) String() string {
+	if m.Disambiguation != "" {
+		return fmt.Sprintf("%s (%s)", m.ArtistName, m.Disambiguation)
+	} else {
+		return m.ArtistName
+	}
 }
 
 type ArtistImage struct {
