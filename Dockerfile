@@ -1,13 +1,13 @@
 FROM golang:1.17-alpine as builder
 
-RUN mkdir -p /go/src/github.com/alcomoraes/gramarr
-WORKDIR /go/src/github.com/alcmoraes/gramarr
+RUN mkdir -p /go/src/github.com/uberjew666/gramarr
+WORKDIR /go/src/github.com/uberjew666/gramarr
 
 RUN apk --update upgrade \
     && apk --no-cache --no-progress add git \
     && rm -rf /var/cache/apk/
 
-ADD . /go/src/github.com/alcmoraes/gramarr/
+ADD . /go/src/github.com/uberjew666/gramarr/
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=on go build -a -installsuffix nocgo -o /gramarr
 
 FROM alpine:3.14

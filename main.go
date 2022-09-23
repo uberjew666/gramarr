@@ -8,8 +8,9 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/alcmoraes/gramarr/radarr"
-	"github.com/alcmoraes/gramarr/sonarr"
+	"github.com/uberjew666/gramarr/radarr"
+	"github.com/uberjew666/gramarr/sonarr"
+	"github.com/uberjew666/gramarr/lidarr"
 
 	tb "gopkg.in/tucnak/telebot.v2"
 )
@@ -26,6 +27,7 @@ type Env struct {
 	CM     *ConversationManager
 	Radarr *radarr.Client
 	Sonarr *sonarr.Client
+	Lidarr *lidarr.Client
 }
 
 func main() {
@@ -63,6 +65,14 @@ func main() {
 		}
 	}
 
+	var lc *lidarr.Client
+	if conf.Lidarr != nil {
+		lc, err = lidarr.NewClient(*conf.Lidarr)
+		if err != nil {
+			log.Fatalf("failed to create lidarr client: %v", err)
+		}
+	}
+
 	cm := NewConversationManager()
 	router := NewRouter(cm)
 
@@ -82,6 +92,7 @@ func main() {
 		CM:     cm,
 		Radarr: rc,
 		Sonarr: sn,
+		Lidarr: lc,
 	}
 
 	setupHandlers(router, env)
@@ -100,6 +111,7 @@ func setupHandlers(r *Router, e *Env) {
 	r.HandleFunc("/cancel", e.RequirePrivate(e.RequireAuth(UANone, e.HandleCancel)))
 	r.HandleFunc("/addmovie", e.RequirePrivate(e.RequireAuth(UAMember, e.HandleAddMovie)))
 	r.HandleFunc("/addtv", e.RequirePrivate(e.RequireAuth(UAMember, e.HandleAddTVShow)))
+	r.HandleFunc("/addartist", e.RequirePrivate(e.RequireAuth(UAMember, e.HandleAddArtist)))
 	r.HandleFunc("/users", e.RequirePrivate(e.RequireAuth(UAAdmin, e.HandleUsers)))
 
 	// Catchall Command
