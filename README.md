@@ -1,7 +1,5 @@
 # gramarr
-## A [Radarr](https://github.com/Radarr/Radarr) and [Sonarr](https://github.com/Sonarr/Sonarr) Telegram Bot featuring user authentication/level access.
-
-![Grammar](https://extraimage.com/images/2020/02/06/gramarr.jpg)
+## A [Radarr](https://github.com/Radarr/Radarr), [Sonarr](https://github.com/Sonarr/Sonarr) and [Lidarr](https://github.com/Lidarr/Lidarr) Telegram Bot featuring user authentication/level access.
 
 ## Features
 
@@ -16,10 +14,18 @@
 - Search for Movies by name.
 - Choose which quality profile you want to download.
 
+### Lidarr
+
+- Search for Artists by name.
+- Choose which quality profile you want to download.
+
+---
+
 ## Requirements
 
 - A running instance of Radarr
-- A running instance of Sonarr V3 (preview)
+- A running instance of Sonarr
+- A running instance of Lidarr
 
 ### If running from source
 
@@ -30,12 +36,13 @@
 - [Docker](https://docker.io)
 - [Docker Compose](https://docs.docker.com/compose/)
 
+---
+
 ## Configuration
 
 - Copy the `config.json.template` file to `config.json` and set-up your configuration;
 
-#### If running from downloaded binaries
-- Put the copied `config.json` alongside with the binary downloaded from [releases](https://github.com/alcmoraes/gramarr/releases);
+---
 
 ## Running it
 
@@ -45,21 +52,17 @@
 $ docker-compose up -d
 ```
 
+Alternatively:
+
+```bash
+$ docker run -d --name gramarr uberjew666/gramarr:latest
+```
+
 ### From source
 
 ```bash
-$ go get github.com/alcmoraes/gramarr
-$ cd $GOPATH/src/github.com/alcmoraes/gramarr
+$ go get github.com/uberjew666/gramarr
+$ cd $GOPATH/src/github.com/uberjew666/gramarr
 $ go get
 $ go run .
 ```
-
-### From release
-
-Just [download](https://github.com/alcmoraes/gramarr/releases/latest) the respective binary for your System.
-
-*Obs: Don't forget to put the `config.json` in the same folder as the binary file.*
-
-## TODO
-
-- **Package oriented**: Reorganize the project.
