@@ -8,7 +8,7 @@ import (
 
 	"path/filepath"
 
-	tb "gopkg.in/tucnak/telebot.v2"
+	tb "gopkg.in/telebot.v3"
 )
 
 func (e *Env) HandleAddTVShow(m *tb.Message) {

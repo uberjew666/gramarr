@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	tb "gopkg.in/tucnak/telebot.v2"
+	tb "gopkg.in/telebot.v3"
 	"github.com/patrickmn/go-cache"
 	"time"
 )

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	tb "gopkg.in/tucnak/telebot.v2"
+	tb "gopkg.in/telebot.v3"
 )
 
 func Send(bot *tb.Bot, to tb.Recipient, msg string) {
@@ -33,6 +33,7 @@ func SendKeyboardList(bot *tb.Bot, to tb.Recipient, msg string, list []string) {
 	bot.Send(to, msg, &tb.ReplyMarkup{
 		ReplyKeyboard:   replyKeys,
 		OneTimeKeyboard: true,
+		RemoveKeyboard: true,
 	})
 }
 

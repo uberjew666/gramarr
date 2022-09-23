@@ -12,7 +12,7 @@ import (
 	"github.com/uberjew666/gramarr/sonarr"
 	"github.com/uberjew666/gramarr/lidarr"
 
-	tb "gopkg.in/tucnak/telebot.v2"
+	tb "gopkg.in/telebot.v3"
 )
 
 // Flags
@@ -102,7 +102,7 @@ func main() {
 
 func setupHandlers(r *Router, e *Env) {
 	// Send all telegram messages to our custom router
-	e.Bot.Handle(tb.OnText, r.Route)
+	e.Bot.Handle(tb.OnText)
 
 	// Commands
 	r.HandleFunc("/auth", e.RequirePrivate(e.RequireAuth(UANone, e.HandleAuth)))
