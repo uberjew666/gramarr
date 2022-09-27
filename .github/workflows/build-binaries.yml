@@ -1,5 +1,5 @@
 ---
-name: release
+name: Build and release
 
 on:
   push:
@@ -7,6 +7,23 @@ on:
       - 'v*.*.*'
 
 jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
   releases-matrix:
     name: Release Go Binary
     runs-on: ubuntu-latest
@@ -29,4 +46,4 @@ jobs:
         goversion: 'https://dl.google.com/go/go1.17.linux-amd64.tar.gz'
         binary_name: 'gramarr'
         extra_files: LICENSE README.md
-        release_tag: ${{ github.ref }}
+        release_tag: ${{ github.ref.name }}
