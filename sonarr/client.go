@@ -106,7 +106,7 @@ func (c *Client) GetFolders() ([]Folder, error) {
 
 func (c *Client) GetProfile(prfl string) ([]Profile, error) {
 
-	resp, err := c.client.R().SetResult([]Profile{}).Get(prfl)
+	resp, err := c.client.R().SetResult([]Profile{}).Get("qualityprofile")
 	if err != nil {
 		return nil, err
 	}
