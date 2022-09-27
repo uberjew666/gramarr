@@ -6,12 +6,14 @@ on:
     - cron: '0 10 * * *'
   push:
     branches:
-      - '**'
+      - 'master'
+      - 'dev'
     tags:
       - 'v*.*.*'
   pull_request:
     branches:
       - 'master'
+      - 'dev'
 
 jobs:
   docker:
