@@ -1,18 +1,19 @@
 ---
-name: ci
+name: docker-build
 
 on:
   schedule:
     - cron: '0 10 * * *'
   push:
     branches:
-      - '**'
+      - 'master'
+      - 'dev'
     tags:
       - 'v*.*.*'
   pull_request:
     branches:
-
       - 'master'
+      - 'dev'
 
 jobs:
   docker:
@@ -38,7 +39,6 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
-            type=sha
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
