@@ -2,8 +2,9 @@
 name: release
 
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+      - 'v*.*.*'
 
 jobs:
   releases-matrix:
@@ -28,3 +29,4 @@ jobs:
         goversion: 'https://dl.google.com/go/go1.17.linux-amd64.tar.gz'
         binary_name: 'gramarr'
         extra_files: LICENSE README.md
+        release_tag: ${{ github.ref }}
