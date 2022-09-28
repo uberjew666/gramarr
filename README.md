@@ -1,5 +1,5 @@
 # gramarr
-## A [Radarr](https://github.com/Radarr/Radarr), [Sonarr](https://github.com/Sonarr/Sonarr) and [Lidarr](https://github.com/Lidarr/Lidarr) Telegram Bot featuring user authentication/level access.
+## A [Radarr](https://github.com/Radarr/Radarr), [Sonarr](https://github.com/Sonarr/Sonarr), [Lidarr](https://github.com/Lidarr/Lidarr) and [Readarr](https://github.com/Readarr/Readarr) Telegram Bot featuring user authentication/level access.
 
 ## Features
 
@@ -19,6 +19,11 @@
 - Search for Artists by name.
 - Choose which quality profile you want to download.
 
+### Readarr
+
+- Search for Authors by name.
+- Choose which quality profile you want to download.
+
 ---
 
 ## Requirements
@@ -26,6 +31,7 @@
 - A running instance of Radarr
 - A running instance of Sonarr
 - A running instance of Lidarr
+- A running instance of Readarr
 
 ### If running from source
 

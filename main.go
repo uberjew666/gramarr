@@ -8,9 +8,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/uberjew666/gramarr/radarr"
-	"github.com/uberjew666/gramarr/sonarr"
 	"github.com/uberjew666/gramarr/lidarr"
+	"github.com/uberjew666/gramarr/radarr"
+	"github.com/uberjew666/gramarr/readarr"
+	"github.com/uberjew666/gramarr/sonarr"
 
 	tb "gopkg.in/tucnak/telebot.v2"
 )
@@ -21,13 +22,14 @@ var (
 )
 
 type Env struct {
-	Config *Config
-	Users  *UserDB
-	Bot    *tb.Bot
-	CM     *ConversationManager
-	Radarr *radarr.Client
-	Sonarr *sonarr.Client
-	Lidarr *lidarr.Client
+	Config  *Config
+	Users   *UserDB
+	Bot     *tb.Bot
+	CM      *ConversationManager
+	Radarr  *radarr.Client
+	Sonarr  *sonarr.Client
+	Lidarr  *lidarr.Client
+	Readarr *readarr.Client
 }
 
 func main() {
@@ -73,6 +75,14 @@ func main() {
 		}
 	}
 
+	var rd *readarr.Client
+	if conf.Readarr != nil {
+		rd, err = readarr.NewClient(*conf.Readarr)
+		if err != nil {
+			log.Fatalf("failed to create readarr client: %v", err)
+		}
+	}
+
 	cm := NewConversationManager()
 	router := NewRouter(cm)
 
@@ -86,13 +96,14 @@ func main() {
 	}
 
 	env := &Env{
-		Config: conf,
-		Bot:    bot,
-		Users:  users,
-		CM:     cm,
-		Radarr: rc,
-		Sonarr: sn,
-		Lidarr: lc,
+		Config:  conf,
+		Bot:     bot,
+		Users:   users,
+		CM:      cm,
+		Radarr:  rc,
+		Sonarr:  sn,
+		Lidarr:  lc,
+		Readarr: rd,
 	}
 
 	setupHandlers(router, env)
@@ -112,6 +123,7 @@ func setupHandlers(r *Router, e *Env) {
 	r.HandleFunc("/addmovie", e.RequirePrivate(e.RequireAuth(UAMember, e.HandleAddMovie)))
 	r.HandleFunc("/addtv", e.RequirePrivate(e.RequireAuth(UAMember, e.HandleAddTVShow)))
 	r.HandleFunc("/addartist", e.RequirePrivate(e.RequireAuth(UAMember, e.HandleAddArtist)))
+	r.HandleFunc("/addauthor", e.RequirePrivate(e.RequireAuth(UAMember, e.HandleAddAuthor)))
 	r.HandleFunc("/users", e.RequirePrivate(e.RequireAuth(UAAdmin, e.HandleUsers)))
 
 	// Catchall Command
