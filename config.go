@@ -6,17 +6,19 @@ import (
 	"log"
 	"path/filepath"
 
-	"github.com/uberjew666/gramarr/radarr"
-	"github.com/uberjew666/gramarr/sonarr"
 	"github.com/uberjew666/gramarr/lidarr"
+	"github.com/uberjew666/gramarr/radarr"
+	"github.com/uberjew666/gramarr/readarr"
+	"github.com/uberjew666/gramarr/sonarr"
 )
 
 type Config struct {
-	Telegram TelegramConfig `json:"telegram"`
-	Bot      BotConfig      `json:"bot"`
-	Radarr   *radarr.Config `json:"radarr"`
-	Sonarr   *sonarr.Config `json:"sonarr"`
-	Lidarr   *lidarr.Config `json:"lidarr"`
+	Telegram TelegramConfig  `json:"telegram"`
+	Bot      BotConfig       `json:"bot"`
+	Radarr   *radarr.Config  `json:"radarr"`
+	Sonarr   *sonarr.Config  `json:"sonarr"`
+	Lidarr   *lidarr.Config  `json:"lidarr"`
+	Readarr  *readarr.Config `json:"readarr"`
 }
 
 type TelegramConfig struct {
