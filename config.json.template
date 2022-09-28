@@ -35,5 +35,15 @@
     "username": "",
     "password": "",
     "maxResults": 6
+  },
+  "readarr": {
+    "hostname": "",
+    "apiKey": "",
+    "port": 80,
+    "urlBase": "",
+    "ssl": false,
+    "username": "",
+    "password": "",
+    "maxResults": 6
   }
 }
