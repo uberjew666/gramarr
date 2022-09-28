@@ -124,6 +124,7 @@ func (c *Client) AddAuthor(m AuthorResource, metadataProfile int, qualityProfile
 		Images:            m.Images,
 		QualityProfileID:  qualityProfile,
 		MetadataProfileID: metadataProfile,
+		ForeignAuthorID:   m.ForeignAuthorID,
 		RootFolderPath:    path,
 		Monitored:         true,
 		AddOptions: AddAuthorOptions{
