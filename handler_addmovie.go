@@ -110,7 +110,7 @@ func (c *AddMovieConversation) AskPickMovie(m *tb.Message) Handler {
 
 func (c *AddMovieConversation) AskPickMovieQuality(m *tb.Message) Handler {
 
-	profiles, err := c.env.Radarr.GetProfile("profile")
+	profiles, err := c.env.Radarr.GetProfile("qualityprofile")
 
 	// GetProfile Service Failed
 	if err != nil {
